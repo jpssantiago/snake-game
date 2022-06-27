@@ -25,7 +25,7 @@ class Snake {
                 break;
             case 'right':
                 rect = {
-                    x: this.tail[this.tail.length - 1].x+ MOVEMENT_INCREMENT,
+                    x: this.tail[this.tail.length - 1].x + MOVEMENT_INCREMENT,
                     y: this.tail[this.tail.length - 1].y,
                 };
                 break;
@@ -55,7 +55,6 @@ class Snake {
 
     draw(context) {
         context.fillStyle = '#FFFFFF';
-        // context.fillRect(this.tail[this.tail.length - 1].x, this.tail[this.tail.length - 1].y, 20, 20);
 
         for (let i = 0; i < this.tail.length; i++) {
             const x = this.tail[i].x;
@@ -66,7 +65,41 @@ class Snake {
     }
 
     setMovement(movement) {
+        const oldMovement = this.movement;
+
+        if (this.tail.length > 1) {
+            switch (movement) {
+                case 'up':
+                    if (oldMovement == 'down') return;
+                    break;
+                case 'right':
+                    if (oldMovement == 'left') return;
+                    break;
+                case 'down':
+                    if (oldMovement == 'up') return;
+                    break;
+                case 'left':
+                    if (oldMovement == 'right') return;
+                    break;
+            }
+        }
+
         this.movement = movement;
+    }
+
+    hasCollidedWithTail() {
+        if (this.tail.length == 1) return false;
+
+        const x = this.tail[this.tail.length - 1].x;
+        const y = this.tail[this.tail.length - 1].y;
+
+        for (let i = this.tail.length - 2; i >= 0; i--) {
+            if (x == this.tail[i].x && y == this.tail[i].y) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     hasEaten(apple) {

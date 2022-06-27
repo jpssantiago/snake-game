@@ -11,6 +11,11 @@ const update = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
     snake.move();
 
+    if (snake.hasCollidedWithTail()) {
+        window.location.reload();
+        alert('Game Over.');
+    }
+
     if (snake.hasEaten(apple)) {
         apple.generateNewApple();
     }
