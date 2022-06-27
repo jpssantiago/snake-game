@@ -5,7 +5,7 @@ const initialX = (canvas.width / 2) - 20;
 const initialY = (canvas.height / 2) - 20;
 
 const snake = new Snake(initialX, initialY, canvas.width, canvas.height);
-const apple = new Apple(canvas.width, canvas.height);
+const apple = new Apple(canvas.width, canvas.height, snake.tail);
 
 const update = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
