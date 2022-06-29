@@ -14,6 +14,11 @@ git clone https://github.com/jpssantiago/snake-game
 
 3. Enjoy :)
 
+## To do
+
+- [] Game over when snake head collides with tail.
+- [] Fix bug of apple spawning in the same [x, y] of the snake body.
+
 <!--
 ## Images
 
